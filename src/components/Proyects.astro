@@ -1,12 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components';
+import gamerMatchImg from '../assets/images/EjemploGM.png';
+import comingSoonImg from '../assets/images/Comingsoon.jpg';
 ---
 
 <section id="proyectos" class="proyects section">
     <h2 data-i18n="projects.title"><Icon name="proyects" height="25" width="25" />Proyectos</h2>
     <div class="projects-list">
     <article class="project-item">
-        <img src="/src/assets/images/EjemploGM.png" alt="GamerMatch Preview" />
+        <img src={gamerMatchImg.src} alt="GamerMatch Preview" />
         <h3>GamerMatch</h3>
         <p data-i18n="projects.gamermatch">Trabajo final del grado superior en desarrollo de aplicaciones web.</p>
         <button id="saber-mas" data-i18n="projects.more">Saber más</button>
@@ -15,13 +17,13 @@ import { Icon } from 'astro-icon/components';
         </div>
     </article>
     <article class="project-item">
-        <img src="/src/assets/images/Comingsoon.jpg" alt="KeyTariner Preview" />
+        <img src={comingSoonImg.src} alt="KeyTariner Preview" />
         <h3>KeyTariner</h3>
         <p data-i18n="projects.keytariner">Aplicación para mejorar la capacidad de mecanografía a través de niveles de dificultad y sistema de puntaje.</p>
                 <button id="saber-mas" data-i18n="projects.more">Saber más</button>
     </article>
     <article class="project-item">
-        <img src="/src/assets/images/Comingsoon.jpg" alt="Project 3 Preview" />
+        <img src={comingSoonImg.src} alt="Project 3 Preview" />
         <h3>Boda Marta&Carlos</h3>
         <p data-i18n="projects.wedding">Web personal tipo invitación digital de bodas</p>
                 <button id="saber-mas" data-i18n="projects.more">Saber más</button>
