@@ -1,0 +1,257 @@
+---
+import calianiLogo from '../assets/caliani.devLogo.svg';
+import { Icon } from 'astro-icon/components';
+
+
+
+---
+<nav class="navbar">
+    <a href="https://caliani.dev">
+        <img id="CalianiLogo" src={calianiLogo.src} width="50" height="50" alt="Caliani.dev Logo" />
+    </a>
+    <button id="menu-open" class="menu">|||</button>
+    <ul class="nav-list">
+        <button id="cerrar-menu" class="menu-close">X</button>
+        <li><a href="#sobre-mi" data-i18n="nav.about">About me</a></li>
+        <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
+        <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+        <div class="language-dropdown">
+            <button id="language-btn"><Icon id="language" name="language" height="20" width="20"></Icon></button>
+            <ul id="language-options" class="dropdown-content">
+                <li><button class="lang-option" data-lang="es">ES</button></li>
+                <li><button class="lang-option" data-lang="en">EN</button></li>
+                <li><button class="lang-option" data-lang="de">DE</button></li>
+            </ul>
+        </div>
+    </ul>
+</nav>
+    
+<style>
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding: 0.5rem 2rem;
+    background: linear-gradient(to bottom, var(--bg-main) 70%, var(--bg-element) 100%);
+}
+
+#CalianiLogo {
+    margin-right: 0;
+    padding: 0;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap:1.2em;
+    margin:0;
+    padding:0;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color:white;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+}
+
+#language {
+    color: white;
+    cursor: pointer;
+}
+
+#language-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nav-list li a:hover {
+    background-color: var(--accent);
+    color: #001433;
+    transition: 0.6s;
+}
+
+.nav-list li a:focus {
+    background-color: var(--accent);
+    opacity: 0.1;
+    border: 1px solid var(--accent);
+    color: #001433;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.menu {
+    display: none;
+    transform: rotate(90deg);
+}
+
+.menu-close {
+    background-color: transparent;
+    border:none;
+    color:white;
+    font-size:1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: none;
+    align-self: flex-start;
+}
+
+/* Media Queries for Mobile Devices */
+
+@media screen and (max-width:620px)  {
+    
+    .nav-list {
+        display: none;
+    }
+
+    .menu {
+        display:block;
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0.5rem;
+    } 
+
+    .menu-close {
+        display: block;
+    }
+
+
+    .nav-list{
+        flex-direction: column;
+        position: absolute;
+        top:0;
+        right:0;
+        background-color: var(--bg-element);
+        padding: 1rem;
+        gap:1rem;
+        align-items: center;
+        height: 100vh;
+        box-shadow: #d4d1d05c 0px 0px 0px 100vmax;
+     }
+
+     .nav-list li a:hover {
+        background-color: var(--accent);
+        color: var(--bg-element);
+        transition: 0.3s;
+     }
+
+}
+
+.language-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background-color: var(--bg-element);
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 8px;
+    padding: 0.5rem;
+    list-style: none;
+    flex-direction: column;
+    gap: 0.2rem;
+    border: 1px solid var(--accent);
+}
+
+.dropdown-content.show {
+    display: flex;
+}
+
+.lang-option {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    padding: 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.lang-option:hover {
+    background-color: var(--accent);
+    color: #001433;
+}
+
+</style>
+
+<script>
+    import { changeLanguage } from '../lib/translator.js';
+
+    // crea una función para manejar el menú y el selector de idioma
+    addEventListener('DOMContentLoaded', () => {
+        const abrirMenuBtn = document.getElementById('menu-open');
+        const cerrarMenuBtn = document.getElementById('cerrar-menu'); 
+        const navList = document.querySelector('.nav-list') as HTMLElement;
+
+        if (abrirMenuBtn && navList) {
+            abrirMenuBtn.addEventListener('click', () => {
+                navList.style.display = 'flex';
+            });
+        }
+
+        if (cerrarMenuBtn && navList) {
+            cerrarMenuBtn.addEventListener('click', () => {
+                navList.style.display = 'none';
+            });
+        }
+
+        // Mostrar el menu de nuevo cuando la pantalla se redimensiona a mayor tamaño
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 640 && navList) {
+                navList.style.display = ''; 
+            }
+        });
+
+        // Lógica del selector de idioma
+        const langBtn = document.getElementById('language-btn');
+        const langDropdown = document.getElementById('language-options');
+        
+        if (langBtn && langDropdown) {
+            langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (e.target instanceof Node && !langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+                    langDropdown.classList.remove('show');
+                }
+            });
+        }
+
+        const langOptions = document.querySelectorAll('.lang-option');
+        langOptions.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                if (lang) {
+                    changeLanguage(lang);
+                    if (langDropdown) langDropdown.classList.remove('show');
+                }
+            });
+        });
+
+        // Cargar el idioma preferido al iniciar la página
+        const savedLang = localStorage.getItem('preferredLanguage') || 'es';
+        changeLanguage(savedLang);
+    });
+</script>

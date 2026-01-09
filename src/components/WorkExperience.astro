@@ -1,0 +1,81 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+
+
+<section id="experiencia" class="work-experience">
+    <h2 id="workExperience" data-i18n="experience.title"><Icon id="work" name="work" height="20" width="20"></Icon> Experiencia Laboral</h2>
+    <div class="experience-item">
+        <h3 data-i18n="experience.item1.title">Desarrollador Web Junior</h3>
+        <span class="date-range" data-i18n="experience.item1.date"> Septiembre 2024 - Presente</span>
+        <p data-i18n="experience.item1.desc">Desarrollo de aplicaciones de forma autodidacta para proyectos propios.</p>
+    </div>
+        <div class="experience-item">
+        <h3 data-i18n="experience.item2.title">Desarrollador Web Junior - SubeyBajaBikes.com</h3>
+        <span class="date-range" data-i18n="experience.item2.date">Abril 2025 - Junio 2025</span>
+        <p data-i18n="experience.item2.desc">Estudiante en prácticas. Desarrollo e implementación de módulos de PrestaShop y diseño de nuevos temas para la plataforma.</p>
+    </div>
+</section>
+
+<style>
+
+section{
+    max-width: 700px;
+    margin: auto;
+}
+
+.work-experience {
+    padding: 1rem;
+    color: var(--text-body);
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+
+}
+
+
+#workExperience {
+    align-items:center;
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-highlight);
+}
+
+
+.work-experience h3 {
+    color: var(--text-highlight);
+    margin: 0;
+
+}
+
+.experience-item {
+    padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 1.2rem;
+    border-left: 1.5px solid var(--border-subtle);
+    margin-left: 0.625rem;
+}
+.date-range {
+    font-style: italic;
+    color: var(--accent-highlight);
+    opacity: 0.8;
+}
+
+.experience-item::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 0.5rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background-color: var(--accent-highlight);
+    transform: translateX(-50%);
+}
+</style>

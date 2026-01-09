@@ -1,22 +1,68 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+    <meta name="description" content="Portafolio de Carlos Caliani, desarrollador web junior con foco en front-end. Explora mis proyectos, habilidades y experiencia en desarrollo web." />
+    <meta name="keywords" content="Carlos Caliani, Carlos, Caliani,  portafolio, desarrollador web, front-end, proyectos web, habilidades de desarrollo, experiencia laboral, ingeniería de software, dev, portfolio, porfolio" />
+    <meta name="author" content="Carlos Caliani" />
+		<title>Caliani.dev</title>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
 	html,
 	body {
 		margin: 0;
-		width: 100%;
-		height: 100%;
+		width: 100dvw;
+		height: 100dvh;
+    background: radial-gradient(circle at center, #2D2E33 0%, #212227 100%);
+		font-family: system-ui, sans-serif;
+    justify-content: center;
+    scroll-behavior: smooth;
 	}
+
+
+
+	/* 1. DEFINICIÓN DE LA PALETA (Variables CSS) */
+  :root {
+    /* Paleta Base */
+    --color-base-1: #4B4C51;
+    --color-base-2: #37383C;
+    --color-base-3: #28292F;
+    --color-base-4: #212227;
+    --color-base-5: #5C5D61;
+    --color-base-6: #C0C1C3;
+    --color-base-7: #2D2E33;
+    --color-base-8: #424348;
+    --color-base-9: #46474C;
+    --color-base-10: #57585D;
+    --color-base-11: #0cc0df;
+
+    /* Fondos */
+    --bg-main: var(--color-base-4);       /* #212227 */
+    --bg-element: var(--color-base-7);    /* #2D2E33 */
+    
+    /* Bordes y Separadores */
+    --border-subtle: var(--color-base-2); /* #37383C */
+    --border-active: var(--color-base-1); /* #4B4C51 */
+
+    /* Textos */
+    --text-muted: var(--color-base-5);    /* #5C5D61 */
+    --text-body: var(--color-base-6);     /* #C0C1C3 */
+    --text-highlight: #ffffff;            /* Títulos (Blanco puro o casi puro) */
+
+    /* Acentos */
+    --accent: var(--color-base-6);        /* Usamos el gris claro como acento */
+    --accent-highlight: var(--color-base-11); /* Color de acento destacado */
+
+    
+  }
+
+
 </style>
