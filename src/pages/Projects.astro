@@ -1,0 +1,235 @@
+---
+import gamerMatchImg from '../assets/images/EjemploGM.png';
+import comingSoonImg from '../assets/images/Comingsoon.jpg';
+import Cards from '../components/Cards.astro';
+
+const projects = [
+    {
+        name: 'GamerMatch',
+        image: gamerMatchImg.src,
+        alt: 'GamerMatch Preview',
+        descKey: 'projects.gamermatch',
+        description: 'Trabajo final del grado superior en desarrollo de aplicaciones web.',
+        detailKey: 'projects.gamermatchMore',
+        detail: 'GamerMatch es una plataforma web diseñada para conectar a jugadores de videojuegos que buscan compañeros de juego con intereses similares. La aplicación permite a los usuarios crear perfiles, buscar otros jugadores según sus preferencias de juego, y comunicarse a través de un sistema de mensajería integrado. El proyecto fue desarrollado utilizando tecnologías web modernas como HTML5, CSS3, JavaScript y un framework backend para gestionar la base de datos y la lógica del servidor.',
+        tags: ['React', 'Socket.io'],
+        repo: 'https://github.com/CCaliani/GamerMatch--TFG--',
+    },
+    {
+        name: 'KeyTrainer',
+        image: comingSoonImg.src,
+        alt: 'KeyTrainer Preview',
+        descKey: 'projects.keytariner',
+        description: 'Aplicación para mejorar la capacidad de mecanografía a través de niveles de dificultad y sistema de puntaje.',
+        detailKey: 'projects.coming',
+        detail: 'Próximamente más información.',
+        tags: ['TypeScript', 'D3.js'],
+        repo: '#',
+    },
+    {
+        name: 'Boda Marta & Carlos',
+        image: comingSoonImg.src,
+        alt: 'Boda Marta y Carlos Preview',
+        descKey: 'projects.wedding',
+        description: 'Web personal tipo invitación digital de bodas',
+        detailKey: 'projects.coming',
+        detail: 'Próximamente más información.',
+        tags: ['Next.js', 'Supabase'],
+        repo: '#',
+    },
+];
+---
+
+<section id="proyectos" class="projects section">
+    <h2 id="projectsTitle"><span data-i18n="projects.title">Proyectos</span></h2>
+
+    <div class="projects-list">
+        {projects.map((project) => (
+            <Cards project={project} />
+        ))}
+    </div>
+
+    <!-- Modal Global -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+</section>
+
+<style>
+
+.section {
+    width: min(80vw, 1480px);
+    max-width: 90vw;
+    margin: auto;
+    padding: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 9rem;
+}
+
+#projectsTitle {
+    align-items: center;
+    display: flex;
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    margin: 0 0 2.2rem;
+    color: var(--text-highlight);
+    font-family: var(--font-heading);
+    line-height: 1.05;
+}
+
+#projectsTitle span {
+    color: var(--text-highlight);
+}
+
+#projectsTitle span::first-letter {
+    color: var(--text-highlight);
+}
+
+.projects-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 1.8vw, 1.8rem);
+    margin-top: 1.8rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--bg-element);
+    margin: auto;
+    padding: 2rem;
+    border: 1px solid var(--text-highlight);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    color: var(--text-body);
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: var(--text-highlight);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content a {
+    color: var(--text-highlight);
+    text-decoration: none;
+}
+
+.close-btn {
+    color: var(--text-body);
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--text-highlight);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);} 
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive Design */
+@media (max-width: 1120px) {
+    .projects-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 740px) {
+    .section {
+        width: min(94vw, 1480px);
+        padding: 0.8rem;
+    }
+
+    .projects-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+
+<script>
+// Lógica para mostrar el modal con información
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('project-modal');
+    const modalBody = document.getElementById('modal-body');
+    const closeBtn = document.querySelector('.close-btn');
+
+    if (modal && modalBody) {
+        // Abrir modal
+        document.querySelectorAll('.more-info-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Prevenir comportamiento por defecto
+                e.preventDefault();
+                
+                // Encontrar el contenido del proyecto asociado
+                const article = button.closest('.project-item');
+                const details = article?.querySelector('.project-details');
+                
+                if (details) {
+                    modalBody.innerHTML = details.innerHTML;
+                    modal.style.display = 'flex';
+                    // Evitar scroll en el body
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Cerrar modal
+        const closeModal = () => {
+             modal.style.display = 'none';
+             document.body.style.overflow = 'auto'; // Restaurar scroll
+        };
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Cerrar con tecla ESC
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.style.display === 'flex') {
+                closeModal();
+            }
+        });
+    }
+});
+</script>

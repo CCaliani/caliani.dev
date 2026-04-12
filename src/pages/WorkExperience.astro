@@ -1,0 +1,231 @@
+---
+const experiences = [
+    {
+        dateKey: 'experience.item1.date',
+        date: 'Septiembre 2024 - Presente',
+        titleKey: 'experience.item1.title',
+        title: 'Desarrollador Web Junior',
+        descKey: 'experience.item1.desc',
+        description: 'Desarrollo de aplicaciones de forma autodidacta para proyectos propios.',
+    },
+    {
+        dateKey: 'experience.item2.date',
+        date: 'Abril 2025 - Junio 2025',
+        titleKey: 'experience.item2.title',
+        title: 'Desarrollador Web Junior - SubeyBajaBikes.com',
+        descKey: 'experience.item2.desc',
+        description: 'Estudiante en prácticas. Desarrollo e implementación de módulos de PrestaShop y diseño de nuevos temas para la plataforma.',
+    },
+    
+];
+---
+
+
+
+<section id="experiencia" class="work-experience">
+    <h2 id="workExperience"><span data-i18n="experience.title">Experiencia Laboral</span></h2>
+
+    <div class="timeline">
+        {experiences.map((experience, index) => {
+            const isLeft = index % 2 === 0;
+            return (
+                <article class:list={{ 'timeline-row': true, 'row-a': isLeft, 'row-b': !isLeft }}>
+                    {isLeft ? (
+                        <>
+                            <div class="timeline-content is-title">
+                                <span class="date-range" data-i18n={experience.dateKey}>{experience.date}</span>
+                                <h3 data-i18n={experience.titleKey}>{experience.title}</h3>
+                            </div>
+                            <div class:list={{ 'timeline-dot': true, 'dot-main': isLeft, 'dot-muted': !isLeft }} aria-hidden="true"></div>
+                            <p class="timeline-card" data-i18n={experience.descKey}>{experience.description}</p>
+                        </>
+                    ) : (
+                        <>
+                            <p class="timeline-card" data-i18n={experience.descKey}>{experience.description}</p>
+                            <div class:list={{ 'timeline-dot': true, 'dot-main': isLeft, 'dot-muted': !isLeft }} aria-hidden="true"></div>
+                            <div class="timeline-content">
+                                <span class="date-range" data-i18n={experience.dateKey}>{experience.date}</span>
+                                <h3 data-i18n={experience.titleKey}>{experience.title}</h3>
+                            </div>
+                        </>
+                    )}
+                </article>
+            );
+        })}
+    </div>
+</section>
+
+<style>
+
+section{
+    width: min(90vw, 1320px);
+    margin: auto;
+    margin-bottom: 9rem;
+}
+
+.work-experience {
+    padding: 2.2rem 2.5rem 2.8rem;
+    color: var(--text-body);
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    border-radius: 14px;
+}
+
+
+#workExperience {
+    align-items: center;
+    display: flex;
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    margin: 0 0 2.2rem;
+    color: var(--text-highlight);
+    font-family: var(--font-heading);
+    line-height: 1.05;
+}
+
+#workExperience span {
+    color: var(--text-highlight);
+}
+
+#workExperience span::first-letter {
+    color: var(--text-highlight);
+}
+
+.timeline {
+    position: relative;
+    display: grid;
+    gap: 2.9rem;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(12, 192, 223, 0.18), rgba(12, 192, 223, 0.63), rgba(12, 192, 223, 0.16));
+}
+
+.timeline-row {
+    display: grid;
+    grid-template-columns: minmax(270px, 1fr) auto minmax(270px, 1fr);
+    gap: 2rem;
+    align-items: center;
+}
+
+.timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.36rem;
+}
+
+.is-title {
+    text-align: right;
+}
+
+.row-b .timeline-content {
+    text-align: left;
+}
+
+.work-experience h3 {
+    color: var(--text-highlight);
+    margin: 0;
+    font-size: clamp(1.2rem, 2.6vw, 1.8rem);
+    line-height: 1.06;
+}
+
+.date-range {
+    font-style: normal;
+    color: var(--accent-highlight);
+    opacity: 1;
+    font-size: clamp(1rem, 2vw, 1rem);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.company {
+    font-size: 0.84rem;
+    letter-spacing: 0.15em;
+    color: rgba(192, 193, 195, 0.72);
+}
+
+.timeline-dot {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+}
+
+.dot-main {
+    background-color: #44d9ea;
+    box-shadow: 0 0 0 6px rgba(68, 217, 234, 0.14), 0 0 20px 2px rgba(68, 217, 234, 0.85);
+}
+
+.dot-muted {
+    background-color: #4d5561;
+}
+
+.timeline-card {
+    margin: 0;
+    padding: 1.9rem 2.1rem;
+    font-size: clamp(1.08rem, 1.45vw, 1.18rem);
+    line-height: 1.55;
+    color: rgba(192, 193, 195, 0.9);
+    background: linear-gradient(97deg, rgba(58, 58, 66, 0.68), rgba(43, 45, 52, 0.85));
+    border-radius: 0 12px 12px 0;
+    border-left: 4px solid rgba(68, 217, 234, 0.88);
+}
+
+.row-b .timeline-card {
+    border-radius: 12px 0 0 12px;
+    border-left: none;
+    border-right: 4px solid rgba(90, 97, 107, 0.9);
+}
+
+@media (max-width: 980px) {
+    .work-experience {
+        padding: 1.4rem 1rem 1.8rem;
+    }
+
+    .timeline::before {
+        left: 0.5rem;
+        transform: none;
+    }
+
+    .timeline-row {
+        grid-template-columns: auto 1fr;
+        gap: 0.7rem 1rem;
+        align-items: start;
+    }
+
+    .timeline-dot {
+        grid-row: 1 / span 2;
+        margin-top: 0.6rem;
+    }
+
+    .timeline-content,
+    .is-title,
+    .row-b .timeline-content {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .timeline-card,
+    .row-b .timeline-card {
+        grid-column: 2;
+        border-radius: 10px;
+        border-right: none;
+        border-left: 4px solid rgba(68, 217, 234, 0.88);
+    }
+
+    .date-range {
+        font-size: clamp(0.95rem, 4.4vw, 1.15rem);
+    }
+
+    .work-experience h3 {
+        font-size: clamp(1.15rem, 6.1vw, 1.5rem);
+    }
+}
+</style>

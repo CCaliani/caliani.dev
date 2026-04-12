@@ -3,24 +3,57 @@
 ---
 
 <footer class="footer">
-  <div class="container">
-    <p>&copy; {new Date().getFullYear()} Mi Portfolio. Algunos derechos reservados.</p>
-    <nav>
-      
+  <div class="footer-inner">
+    <p class="footer-copy">&copy; {new Date().getFullYear()} Carlos Caliani. Portafolio personal.</p>
+    <nav class="footer-links" aria-label="Redes sociales">
+      <a href="https://github.com/CCaliani" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/carlos-caliani-ferrandez/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </nav>
   </div>
 </footer>
 
 <style>
-
 .footer {
-    color: var(--text-body);
-    padding: 1rem 0;
-    margin-top: 2rem;
-    text-align: center;
-    border-top: 1px solid var(--bg-element);
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to top, var(--bg-main) 70%, var(--bg-element) 100%);
+    color: var(--text-muted);
+    padding: 1.4rem 0;
 }
 
+.footer-inner {
+    width: min(90vw, 1320px);
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.footer-copy {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(192, 193, 195, 0.6);
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    font-size: 0.9rem;
+    color: rgba(192, 193, 195, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--color-base-11);
+}
+
+@media (max-width: 600px) {
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+}
 </style>

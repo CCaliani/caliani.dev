@@ -1,0 +1,197 @@
+﻿---
+interface ProjectCard {
+    name: string;
+    image: string;
+    alt: string;
+    descKey?: string;
+    description: string;
+    detailKey?: string;
+    detail: string;
+    tags: string[];
+    repo: string;
+}
+
+interface Props {
+    project: ProjectCard;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="project-item">
+    <div class="project-media">
+        <img src={project.image} alt={project.alt} loading="lazy" />
+    </div>
+
+    <div class="project-body">
+        <div class="project-top">
+            <h3>{project.name}</h3>
+            <a class="project-link" href={project.repo} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${project.name} en GitHub`}>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M14 4H20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M20 4L10 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M20 14V19C20 19.6 19.8 20.1 19.4 20.4C19.1 20.8 18.6 21 18 21H5C4.4 21 3.9 20.8 3.6 20.4C3.2 20.1 3 19.6 3 19V6C3 5.4 3.2 4.9 3.6 4.6C3.9 4.2 4.4 4 5 4H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+        </div>
+
+        {project.descKey ? (
+            <p data-i18n={project.descKey}>{project.description}</p>
+        ) : (
+            <p>{project.description}</p>
+        )}
+
+        <ul class="project-tags">
+            {project.tags.map((tag) => (
+                <li>{tag}</li>
+            ))}
+        </ul>
+
+        <button class="more-info-btn" data-i18n="projects.more">Saber más</button>
+
+        <div class="project-details" hidden>
+            <h3>{project.name}</h3>
+            {project.detailKey ? (
+                <p data-i18n={project.detailKey}>{project.detail}</p>
+            ) : (
+                <p>{project.detail}</p>
+            )}
+            <a id="project-github" href={project.repo} target="_blank" rel="noopener noreferrer" data-i18n="cards.github">Ver en GitHub</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.project-item {
+    background: linear-gradient(180deg, rgba(7, 10, 17, 0.95), rgba(10, 11, 18, 0.95));
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.project-media {
+    position: relative;
+    min-height: 250px;
+    background: radial-gradient(circle at 35% 20%, rgba(12, 192, 223, 0.2), rgba(9, 12, 20, 0.95) 65%);
+}
+
+.project-media img {
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.project-body {
+    background: linear-gradient(180deg, rgba(43, 44, 52, 0.86), rgba(40, 42, 49, 0.9));
+    padding: 1.5rem 1.3rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.project-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.project-item h3 {
+    margin: 0;
+    color: var(--text-highlight);
+    font-size: clamp(1.45rem, 2.2vw, 2.1rem);
+    line-height: 1.1;
+}
+
+.project-item p {
+    color: rgba(192, 193, 195, 0.87);
+    margin: 0.95rem 0 1.2rem;
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.project-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+}
+
+.project-tags li {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.38rem 0.72rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    line-height: 1;
+    color: #56e5f2;
+    background: rgba(8, 12, 22, 0.86);
+    border: 1px solid rgba(86, 229, 242, 0.1);
+}
+
+.project-link {
+    color: #56e5f2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 0.6rem;
+    border: 1px solid rgba(86, 229, 242, 0.34);
+    background: rgba(12, 15, 24, 0.7);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.project-link:hover {
+    transform: translateY(-1px);
+    background: rgba(15, 22, 34, 0.95);
+}
+
+.project-link svg {
+    width: 1.18rem;
+    height: 1.18rem;
+}
+
+.project-item button {
+    margin-top: 1.2rem;
+    background-color: transparent;
+    color: rgba(86, 229, 242, 0.95);
+    border: 1px solid rgba(86, 229, 242, 0.35);
+    border-radius: 8px;
+    padding: 0.55rem 0.85rem;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.project-item button:hover {
+    background-color: rgba(86, 229, 242, 0.14);
+    transition: background-color 0.2s ease;
+}
+
+.project-item button:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+.project-details {
+    display: none;
+}
+</style>

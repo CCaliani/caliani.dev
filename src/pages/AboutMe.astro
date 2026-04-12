@@ -1,0 +1,138 @@
+---
+import photoProfile from '../assets/images/Mi_foto.png';
+---
+
+
+
+<div id="sobre-mi" class="aboutMe">
+  <div class="about-shell">
+    <div id="foto-perfil" class="about-photo">
+      <img src={photoProfile.src} alt="Foto de perfil de Carlos Caliani" width="500" height="auto" />
+    </div>
+
+    <div id="presentacion" class="about-copy">
+      <h2 data-i18n="aboutme.subtitle">Desarrollador web junior</h2>
+      <h1>
+        <span class="name-main">Carlos</span>
+        <span class="name-accent">Caliani</span>
+      </h1>
+      <p data-i18n="aboutme.description">
+        Soy estudiante de primer año del grado de <strong>Ingeniería de Software</strong>. Después de finalizar el grado superior
+        de Desarrollo de aplicaciones web, he decidido enfocar mi carrera a desarrollo enfocado al cliente.
+        Me considero una persona proactiva, con ganas de aprender y crecer profesionalmente.
+        Tengo experiencia trabajando en equipo y me adapto fácilmente a nuevos entornos de trabajo.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+.aboutMe {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    margin: 0 auto;
+    align-items: stretch;
+    justify-content: center;
+    padding: 2.5rem 1.25rem;
+    color: var(--text-body);
+    margin-top: 9rem;
+    max-width: 1400px;
+    background-color: #121214;
+    margin-bottom: 9rem;
+}
+
+.aboutMe::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.about-shell {
+    position: relative;
+    z-index: 1;
+    width: min(1200px, 100%);
+    display: grid;
+    grid-template-columns: minmax(280px, 520px) minmax(320px, 1fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 6rem);
+}
+
+.about-photo {
+    background-color: #121214;
+    border-radius: 16px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.07), 0 16px 45px rgba(0, 0, 0, 0.45);
+}
+
+.about-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    object-fit: cover;
+    background: radial-gradient(circle at 50% 50%, rgba(12, 192, 223, 0.17), transparent 85%);
+}
+
+.about-copy {
+    max-width: 760px;
+}
+
+#presentacion h1 {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    line-height: 0.92;
+    font-size: clamp(3rem, 8.4vw, 6.2rem);
+    color: var(--text-highlight);
+    font-weight: 700;
+}
+
+#presentacion h2 {
+    margin: 0 0 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.34em;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--accent-highlight);
+}
+
+#presentacion p {
+    margin: 1.9rem 0 0;
+    max-width: 62ch;
+    font-size: clamp(1rem, 1.45vw, 1.18rem);
+    line-height: 1.7;
+    color: rgba(192, 193, 195, 0.88);
+    text-wrap: pretty;
+}
+
+#presentacion strong {
+    color: var(--text-highlight);
+}
+
+.name-main {
+    color: #f2f3f5;
+}
+
+.name-accent {
+    color: #44d9ea;
+}
+
+@media (max-width: 980px) {
+    .aboutMe {
+        margin-top: 6rem;
+        padding: 1.25rem;
+        border-radius: 14px;
+    }
+
+    .about-shell {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+    }
+
+    .about-photo {
+        max-width: 600px;
+    }
+}
+</style>

@@ -3,6 +3,12 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
 		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
     <meta name="description" content="Portafolio de Carlos Caliani, desarrollador web junior con foco en front-end. Explora mis proyectos, habilidades y experiencia en desarrollo web." />
@@ -19,10 +25,12 @@
 	html,
 	body {
 		margin: 0;
-		width: 100dvw;
-		height: 100dvh;
-    background: radial-gradient(circle at center, #2D2E33 0%, #212227 100%);
-		font-family: system-ui, sans-serif;
+		width: 100%;
+		min-height: 100dvh;
+		overflow-x: hidden;
+    background-color: #121214;
+    /* font-family: system-ui, sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; */
+    font-family: var(--font-body);
     justify-content: center;
     scroll-behavior: smooth;
 	}
@@ -31,6 +39,11 @@
 
 	/* 1. DEFINICIÓN DE LA PALETA (Variables CSS) */
   :root {
+    /* Tipografias */
+    --font-body: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-heading: "Space Grotesk", "Inter", "Segoe UI", sans-serif;
+    --font-button: "Manrope", "Inter", "Segoe UI", sans-serif;
+
     /* Paleta Base */
     --color-base-1: #4B4C51;
     --color-base-2: #37383C;
@@ -62,6 +75,19 @@
     --accent-highlight: var(--color-base-11); /* Color de acento destacado */
 
     
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+  }
+
+  button,
+  .btn {
+    font-family: var(--font-button);
+    font-weight: 700;
   }
 
 
